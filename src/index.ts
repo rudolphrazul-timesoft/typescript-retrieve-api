@@ -1,45 +1,25 @@
-// Import the required types (this is optional in TypeScript but can be useful for type checking)
+  /*
+  Objective: Write a function that will call a public API and display the "Title", and "Publisher"
+  e.g.
+    Title: Piedmont Ave. bulletin. [volume] by Publisher: Piedmont Avenue Merchants Association
+    Title: Piedmont Avenue District bulletin. [volume] by Publisher: Piedmont Press
+    Title: Piedmont District bulletin. [volume] by Publisher: Piedmont Press
+ 
+  1. Examine the API (and its results), and design the required interaces or structure 
+  2. Write a function that will call a public API and display the "Title", and "Publisher"
+  
+  Note: you can use or "Import" your preferred  api data fetching library.
+  */
+
 import fetch from 'node-fetch';
-
-// Define interfaces for the expected structure of the API response
-interface NewspaperItem {
-  title: string;
-  publisher: string;  
-  // Add other fields based on the actual response structure if needed
-}
-
-interface ApiResponse {
-  items: NewspaperItem[];
-  // Add other fields based on the actual response structure if needed
-}
-
+ 
 async function fetchAndDisplayResults() {
   const apiUrl = 'https://chroniclingamerica.loc.gov/search/titles/results/?terms=oakland&format=json&page=5';
 
-  try {
-    const response = await fetch(apiUrl);
+  //your code here
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
-    // Use a type assertion to specify the type of the JSON response
-    const data = await response.json() as ApiResponse;
-    //console.log('API Response:', data);
-
-    // If you have a specific structure, you can iterate over the results
-    if (data && data.items) {
-      data.items.forEach((item: NewspaperItem) => {
-        console.log(`Title: ${item.title} by Publisher: ${item.publisher}`);
-        // Log other fields as necessary
-      });
-    } else {
-      console.log('No items found in the response.');
-    }
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
+  //note: use this format.
+  //console.log(`Title: ${item.title} by Publisher: ${item.publisher}`);
 }
 
-// Call the function
 fetchAndDisplayResults();
